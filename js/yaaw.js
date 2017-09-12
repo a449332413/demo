@@ -546,6 +546,10 @@ var YAAW = (function() {
 				});
 
 				if (uri) {
+					var mreg=new RegExp("^[a-fA-F0-9]{40}$");
+					if (mreg.test(uri)) {
+						uri="magnet:?xt=urn:btih:"+uri;//补齐磁力链头
+					}
 					ARIA2.madd_task(uri, options);
 					YAAW.setting.save_add_task_option(options_save);
 				} else if (torrent_file) {
